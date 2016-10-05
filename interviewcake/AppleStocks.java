@@ -21,10 +21,10 @@ public class AppleStocks
 		int[] yesterdaysStockPrices3 = new int[]{17, 16, 15, 14, 13};
 		int[] yesterdaysStockPrices4 = new int[]{17, 16, 15, 15, 13};
 
-		boolean pass1 = getMaxProfit(yesterdaysStockPrices1) == 6;
-		boolean pass2 = getMaxProfit(yesterdaysStockPrices2) == 15;
-		boolean pass3 = getMaxProfit(yesterdaysStockPrices3) == -1;
-		boolean pass4 = getMaxProfit(yesterdaysStockPrices4) == 0;
+		boolean pass1 = getMaxProfitOptimized(yesterdaysStockPrices1) == 6;
+		boolean pass2 = getMaxProfitOptimized(yesterdaysStockPrices2) == 15;
+		boolean pass3 = getMaxProfitOptimized(yesterdaysStockPrices3) == -1;
+		boolean pass4 = getMaxProfitOptimized(yesterdaysStockPrices4) == 0;
 
 		assert pass1;
 		assert pass2;
@@ -52,4 +52,22 @@ public class AppleStocks
 		}
 		return maxProfit;
 	}
+
+	public static int getMaxProfitOptimized(int[] yesterdaysStockPrices)
+	{
+		int maxProfit = yesterdaysStockPrices[1] - yesterdaysStockPrices[0];
+		int minPrice = yesterdaysStockPrices[0];
+
+		for (int currentPrice : yesterdaysStockPrices)
+		{
+			minPrice = Math.min(currentPrice, minPrice);
+
+			int potentialProfit = currentPrice - minPrice;
+
+			maxProfit = Math.max(maxProfit, potentialProfit);
+		}
+
+		return maxProfit;
+	}
+
 }
