@@ -22,7 +22,7 @@ public class AppleStocks
 
 		boolean pass1 = getMaxProfit(yesterdaysStockPrices1) == 6;
 		boolean pass2 = getMaxProfit(yesterdaysStockPrices2) == 15;
-		boolean pass3 = getMaxProfit(yesterdaysStockPrices3) == 0;
+		boolean pass3 = getMaxProfit(yesterdaysStockPrices3) == -1;
 
 		assert pass1;
 		assert pass2;
@@ -35,6 +35,10 @@ public class AppleStocks
 
 		for(int i = 0; i < yesterdaysStockPrices.length; i++)
 		{
+			if (i == 0)
+			{
+				maxProfit = yesterdaysStockPrices[i + 1] - yesterdaysStockPrices[i];
+			}
 			for(int j = i + 1; j < yesterdaysStockPrices.length; j++)
 			{
 				if (yesterdaysStockPrices[j] > yesterdaysStockPrices[i])
