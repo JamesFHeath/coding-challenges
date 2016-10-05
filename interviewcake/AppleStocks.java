@@ -16,24 +16,36 @@ public class AppleStocks
 {
 	public static void main(String[] args)
 	{
-		int[] yesterdaysStockPrices = new int[]{10, 7, 5, 8, 11, 9};
-		getMaxProfit(yesterdaysStockPrices);
-		boolean pass = getMaxProfit(yesterdaysStockPrices) == 6;
-		assert pass;
+		int[] yesterdaysStockPrices1 = new int[]{10, 7, 5, 8, 11, 9};
+		int[] yesterdaysStockPrices2 = new int[]{22, 2, 5, 7, 17, 1};
+		int[] yesterdaysStockPrices3 = new int[]{17, 16, 15, 14, 13};
+
+		boolean pass1 = getMaxProfit(yesterdaysStockPrices1) == 6;
+		boolean pass2 = getMaxProfit(yesterdaysStockPrices2) == 15;
+		boolean pass3 = getMaxProfit(yesterdaysStockPrices3) == 0;
+
+		assert pass1;
+		assert pass2;
+		assert pass3;
 	}
 
 	public static int getMaxProfit(int[] yesterdaysStockPrices)
 	{
-		int highPrice = yesterdaysStockPrices[0];
-		int lowPrice = yesterdaysStockPrices[0];
+		int maxProfit = 0;
 
-		for(int price : yesterdaysStockPrices)
+		for(int i = 0; i < yesterdaysStockPrices.length; i++)
 		{
-		  if (price > highPrice)
-				highPrice = price;
-			if (price < lowPrice)
-				lowPrice = price;
+			for(int j = i + 1; j < yesterdaysStockPrices.length; j++)
+			{
+				if (yesterdaysStockPrices[j] > yesterdaysStockPrices[i])
+				{
+					if (maxProfit < yesterdaysStockPrices[j] - yesterdaysStockPrices[i])
+					{
+						maxProfit = yesterdaysStockPrices[j] - yesterdaysStockPrices[i];
+					}
+				}
+			}
 		}
-		return highPrice - lowPrice;
+		return maxProfit;
 	}
 }
