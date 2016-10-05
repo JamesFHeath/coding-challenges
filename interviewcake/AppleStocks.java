@@ -19,14 +19,17 @@ public class AppleStocks
 		int[] yesterdaysStockPrices1 = new int[]{10, 7, 5, 8, 11, 9};
 		int[] yesterdaysStockPrices2 = new int[]{22, 2, 5, 7, 17, 1};
 		int[] yesterdaysStockPrices3 = new int[]{17, 16, 15, 14, 13};
+		int[] yesterdaysStockPrices4 = new int[]{17, 16, 15, 15, 13};
 
 		boolean pass1 = getMaxProfit(yesterdaysStockPrices1) == 6;
 		boolean pass2 = getMaxProfit(yesterdaysStockPrices2) == 15;
 		boolean pass3 = getMaxProfit(yesterdaysStockPrices3) == -1;
+		boolean pass4 = getMaxProfit(yesterdaysStockPrices4) == 0;
 
 		assert pass1;
 		assert pass2;
 		assert pass3;
+		assert pass4;
 	}
 
 	public static int getMaxProfit(int[] yesterdaysStockPrices)
@@ -41,13 +44,10 @@ public class AppleStocks
 			}
 			for(int j = i + 1; j < yesterdaysStockPrices.length; j++)
 			{
-				if (yesterdaysStockPrices[j] > yesterdaysStockPrices[i])
-				{
 					if (maxProfit < yesterdaysStockPrices[j] - yesterdaysStockPrices[i])
 					{
 						maxProfit = yesterdaysStockPrices[j] - yesterdaysStockPrices[i];
 					}
-				}
 			}
 		}
 		return maxProfit;
