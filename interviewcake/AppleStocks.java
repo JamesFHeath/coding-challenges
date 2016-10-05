@@ -10,6 +10,8 @@ So if the stock cost $500 at 10:30am, stockPricesYesterday[60] = 500;.
 Write an efficient function that takes stockPricesYesterday and returns the best profit I could have made
  from 1 purchase and 1 sale of 1 Apple stock yesterday.
 */
+import java.util.Arrays;
+
 public class AppleStocks
 {
 	public static void main(String[] args)
@@ -22,6 +24,16 @@ public class AppleStocks
 
 	public static int getMaxProfit(int[] yesterdaysStockPrices)
 	{
-		return 6;
+		int highPrice = yesterdaysStockPrices[0];
+		int lowPrice = yesterdaysStockPrices[0];
+
+		for(int price : yesterdaysStockPrices)
+		{
+		  if (price > highPrice)
+				highPrice = price;
+			if (price < lowPrice)
+				lowPrice = price;
+		}
+		return highPrice - lowPrice;
 	}
 }
